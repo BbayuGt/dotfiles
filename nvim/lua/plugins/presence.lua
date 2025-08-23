@@ -1,5 +1,16 @@
 return {
   'vyfor/cord.nvim',
-  build = ':Cord update',
-  opts = {}, -- calls require('cord').setup()
+  version = '*',
+  opts = {
+		display = {
+			theme = "catppuccin",
+			flavor = "accent",	
+		},
+		text = {
+			viewing = "Viewing something 👀",
+			editing = "Editing something 👻",
+
+			workspace = "Definitely not doing something stupid😶‍🌫️"
+		}
+	}, -- calls require('cord').setup()
 }

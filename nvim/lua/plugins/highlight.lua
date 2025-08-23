@@ -1,3 +1,5 @@
-return (
-	{'brenoprata10/nvim-highlight-colors', version = false}
-)
+return {
+	'brenoprata10/nvim-highlight-colors',
+	version = false,
+	opts = {}
+}
