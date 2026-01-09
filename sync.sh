@@ -4,10 +4,16 @@
 rm -rf nvim
 cp -r ~/.config/nvim .
 
-# Alacritty
-rm -rf alacritty
-cp -r ~/.config/alacritty .
+# Rio
+rm -rf rio
+cp -r ~/.config/rio .
+
+# Zsh
+rm -rf zshrc
+cp ~/.zshrc zshrc
 
 # Tmux
 rm -rf tmux
 cp -r ~/.config/tmux .
+rm tmux.sh
+cp ~/.tmux.sh tmux.sh
