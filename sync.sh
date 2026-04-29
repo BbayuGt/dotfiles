@@ -4,9 +4,13 @@
 rm -rf nvim
 cp -r ~/.config/nvim .
 
-# Rio
-rm -rf rio
-cp -r ~/.config/rio .
+# Ghostty
+rm -rf ghostty
+cp -r ~/.config/ghostty .
+
+# yazi
+rm -rf yazi
+cp -r ~/.config/yazi .
 
 # Zsh
 rm -rf zshrc
