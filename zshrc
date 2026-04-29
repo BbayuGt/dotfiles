@@ -1,3 +1,32 @@
+alias yare="yay -Rns"
+alias drop="dragon-drop -x"
+alias screenoff="kscreen-doctor --dpms off"
+
+# Power Save Mode: Disable SMT (Threads 6-11) and cap TDP to 10W
+powersave() {
+    echo "Entering Power Save Mode..."
+    # Disable logical threads 6 through 11
+    for i in {6..11}; do
+        echo 0 | sudo tee /sys/devices/system/cpu/cpu$i/online > /dev/null
+    done
+    # Set RyzenAdj limits (10W = 10000)
+    # --stapm-limit is the sustained power limit
+    sudo ryzenadj --stapm-limit=15000 --fast-limit=15000 --slow-limit=15000
+    echo "Cores 6-11 disabled. TDP capped at 10W."
+}
+
+# Power Reset: Enable all cores and reset TDP to defaults
+powerrst() {
+    echo "Resetting Power Profile..."
+    # Re-enable all threads
+    for i in {0..11}; do
+        echo 1 | sudo tee /sys/devices/system/cpu/cpu$i/online > /dev/null
+    done
+    # Reset RyzenAdj (6600H stock is typically 45W, adjust if you prefer different)
+    sudo ryzenadj --stapm-limit=28000 --fast-limit=28000 --slow-limit=28000
+    echo "All cores enabled. TDP reset to 45W."
+}
+
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
@@ -32,7 +61,7 @@ ZSH_THEME="cloud"
 
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
+zstyle ':omz:update' mode auto      # update automatically without asking
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
@@ -77,7 +106,7 @@ ZSH_THEME="cloud"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux)
+plugins=(git tmux zsh-interactive-cd zsh-autosuggestions)
 # ZSH_TMUX_AUTOSTART=true
 
 source $ZSH/oh-my-zsh.sh
@@ -127,9 +156,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
-export PATH=$PATH:/home/bbayugt/.spicetify
-
 # bun completions
 [ -s "/home/bbayugt/.bun/_bun" ] && source "/home/bbayugt/.bun/_bun"
-export PATH=/home/bbayugt/.python/bin:$PATH
 export LIBVIRT_DEFAULT_URI="qemu:///system"
