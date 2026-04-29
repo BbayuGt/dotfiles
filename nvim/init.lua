@@ -16,7 +16,8 @@ vim.o.signcolumn = "yes"
 vim.o.cursorline = true       -- highlight current line
 vim.o.scrolloff = 8           -- keep cursor away from top/bottom edge
 vim.o.sidescrolloff = 8
-vim.o.wrap = false            -- disable line wrap (optional, but nice for code)
+vim.o.wrap = true            -- disable line wrap (optional, but nice for code)
+vim.cmd("set colorcolumn=80")
 
 -- Indentation helpers
 vim.o.smartindent = true
