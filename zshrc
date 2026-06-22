@@ -1,6 +1,8 @@
 alias yare="yay -Rns"
 alias drop="dragon-drop -x"
-alias screenoff="kscreen-doctor --dpms off"
+
+# qt6 path
+export PATH="/usr/lib/qt6/bin/:$PATH"
 
 # Power Save Mode: Disable SMT (Threads 6-11) and cap TDP to 10W
 powersave() {
