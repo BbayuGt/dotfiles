@@ -1,0 +1,24 @@
+{
+    "layer": "top",
+    "modules-left": ["hyprland/window"],
+    "modules-center": ["clock"],
+    "modules-right": ["network","battery", "hyprland/workspaces"],
+    "network": {
+        "format": "{ifname}",
+        "format-wifi": "WiFi : {essid} ({signalStrength}% [{frequency}]) ",
+        "format-ethernet": "Ethernet"
+    },
+    "battery": {
+        "format": "{capacity}% {icon}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "clock": {
+        "format-alt": "{:%a, %d. %b  %H:%M}"
+    },
+    "hyprland/window": {
+        "format": "{initialTitle}",
+        "rewrite": {
+            "New(.*)Tab - (.*)": "$2"
+        }
+    }
+}
