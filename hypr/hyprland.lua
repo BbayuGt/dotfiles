@@ -9,34 +9,9 @@
 -- Create your files separately and then require them like this:
 -- require("myColors")
 
-
-------------------
----- MONITORS ----
-------------------
-
--- See https://wiki.hypr.land/Configuring/Basics/Monitors/
-hl.monitor({ -- Default Monitor Setting - Fallback
-    output   = "",
-    mode     = "preferred",
-    position = "auto",
-    scale    = "auto",
-})
-
-hl.monitor({ -- Monitor Laptop
-    output   = "desc:Communications Supply Corporation (A division of WESCO) 0x0000",
-    mode     = "1920x1200@60",
-    position = "auto-left",
-    scale    = 1,
-})
-
-hl.monitor({ -- Monitor
-    output   = "desc:Xiaomi Corporation Mi Monitor",
-    mode     = "1920x1080@144",
-    vrr      = 1,
-    position = "auto-right",
-    bitdepth = 10,
-    scale    = 1,
-})
+require("modules.monitors")
+require("modules.autostart")
+require("modules.env")
 
 ---------------------
 ---- MY PROGRAMS ----
@@ -47,41 +22,6 @@ local terminal    = "ghostty"
 local fileManager = "ghostty --font-size=16 -e yazi"
 local menu        = "vicinae toggle"
 
-
--------------------
----- AUTOSTART ----
--------------------
-
--- See https://wiki.hypr.land/Configuring/Basics/Autostart/
-
--- Autostart necessary processes (like notifications daemons, status bars, etc.)
--- Or execute your favorite apps at launch like this:
---
--- hl.on("hyprland.start", function () 
---   hl.exec_cmd(terminal)
---   hl.exec_cmd("nm-applet")
---   hl.exec_cmd("waybar & hyprpaper & firefox")
--- end)
-
-hl.on("hyprland.start", function ()
-    hl.exec_cmd("waybar & hyprpaper & hypridle")
-    hl.exec_cmd("systemctl start vicinae --user")
-    hl.exec_cmd("/usr/lib/pam_kwallet_init")
-    hl.exec_cmd("/usr/bin/kwalletd6")
-    hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP ELECTRON_OZONE_PLATFORM_HINT XDG_SESSION_TYPE")
-    hl.exec_cmd("systemctl start --user hyprpolkitagent.service")
-    hl.exec_cmd("/mnt/data/drpcsplit/discord_rpc_proxy")
-end)
-
-
--------------------------------
----- ENVIRONMENT VARIABLES ----
--------------------------------
-
--- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
-hl.env("XCURSOR_SIZE", "24")
-hl.env("HYPRCURSOR_SIZE", "24")
-hl.env("BROWSER", "brave")
 
 
 -----------------------
@@ -119,7 +59,7 @@ hl.config({
         border_size = 2,
 
         col = {
-            active_border   = { colors = {"rgba(ff512faa)", "rgba(ff99eeaa)"}, angle = 45 },
+            active_border   = { colors = {"rgba(65587aaa)", "rgba(ff99eeaa)"}, angle = 45 },
             inactive_border = "rgba(595959aa)",
         },
 
