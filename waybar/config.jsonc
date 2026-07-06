@@ -1,22 +1,53 @@
 {
     "layer": "top",
-    "modules-left": ["hyprland/window"],
-    "modules-center": ["clock"],
-    "modules-right": ["network","battery", "hyprland/workspaces"],
+    "width": 1000,
+    "modules-left": ["hyprland/window", "hyprland/workspaces#number"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": ["network","battery", "clock"],
+    "clock": {
+        "format": " {:%H:%M}"
+    },
     "network": {
+        "format-icons":[
+            "󰤟",
+            "󰤢",
+            "󰤥",
+            "󰤨"
+        ],
         "format": "{ifname}",
-        "format-wifi": "WiFi : {essid} ({signalStrength}% [{frequency}]) ",
-        "format-ethernet": "Ethernet"
+        "format-wifi": " {icon} {essid} ({frequency})",
+        "format-ethernet": "󰈀"
     },
     "battery": {
-        "format": "{capacity}% {icon}",
-        "format-icons": ["", "", "", "", ""]
+        "format": " {icon} {capacity}%",
+        "format-icons": {
+            "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁿", "󰁿", "󰂀", "󰂂", "󰂄"],
+            "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋"]
+        }
     },
-    "clock": {
-        "format-alt": "{:%a, %d. %b  %H:%M}"
+    "hyprland/workspaces#number": {
+        "format": "{name}",
+        "active-only": true
     },
+    "hyprland/workspaces": {
+      "format": "{icon}",
+      "format-window-separator": " ",
+      "format-icons": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "5": "",
+        "6": "",
+        "7": "",
+        "8": "",
+        "9": "",
+        "10": ""
+      }
+
+},
     "hyprland/window": {
-        "format": "{initialTitle}",
+        "format": "{initialTitle} ",
         "rewrite": {
             "New(.*)Tab - (.*)": "$2"
         }

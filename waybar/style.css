@@ -1,73 +1,87 @@
+@import "colors.css";
+
 * {
-    border: none;
-    border-radius: 0;
-    font-family: Google Sans NF;
-    font-size: 16px;
-    min-height: 0;
+    all: unset;
+    font-family: Google Sans NF monospace;
 }
 
-window.HDMI-A-1 * {
-    font-size: 12px;
+.modules-right {
+    margin-right: 12px;
 }
 
 window#waybar {
-    background: rgba(43, 48, 59, 0.1);
-    color: white;
-}
-
-tooltip {
-  background: rgba(43, 48, 59, 0.5);
-  border: 1px solid rgba(100, 114, 125, 0.5);
-}
-tooltip label {
-  color: white;
+    border-radius: 0 0 10px 10px;
+    background-color: alpha(@base-clr, 0.7);
 }
 
 #window {
-    margin-left: 10px;
+    background-color: @purple-dim;
+    padding-left: 12px;
+    border-radius: 0px 0px 0px 10px;
+}
+
+/* Hide #window if no window exist by font size */
+window#waybar.empty #window {
+    all: unset;
+    font-size: 0;
+}
+
+/* Apply border radius if Window is empty */
+window#waybar.empty #workspaces.number button.active {
+    border-radius: 0px 5px 5px 10px;
+}
+
+#workspaces.number {
+    all: unset;
+}
+
+#workspaces.number button.active {
+    all: unset;
+    background-color: @purple-dim;
+    color: @white;
+    padding: 2px 10px;
+    border-radius: 0px 5px 5px 0px;
+}
+
+#workspaces {
+    font-size: 0.25rem;
+    padding: 2px 4px;
+    margin: 8px 0;
 }
 
 #workspaces button {
-    padding: 0 5px;
-    color: white;
+    padding: 0px 5px;
+    margin: 0 2px;
+    min-width: 0.05rem;
+    background-color: @white-muted;
+    border-radius: 50px;
+    transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-#workspaces button.focused {
-    background: #64727D;
-    border-bottom: 3px solid white;
+#workspaces button.active {
+    background-color: @white;
+    min-width: 1rem;
+    transition: all 200ms ease-in-out;
 }
 
-#mode, #clock, #battery {
-    padding: 0 10px;
-}
-
-#mode {
-    background: transparent;
-    border-bottom: 3px solid white;
+#clock, #battery {
+    padding-left: 10px;
 }
 
 #clock {
     background-color: transparent;
 }
 
-#battery {
-    background-color: transparent;
-}
-
-#battery.charging {
-    background-color: transparent;
-}
-
 @keyframes blink {
     to {
-        background-color: #ffffff;
-        color: black;
+        background-color: @white;
+        color: @purple-dim;
     }
 }
 
 #battery.warning:not(.charging) {
-    background: #f53c3c;
-    color: white;
+    background: @error;
+    color: @white;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: steps(12);
