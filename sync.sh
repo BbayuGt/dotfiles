@@ -21,3 +21,11 @@ rm -rf tmux
 cp -r ~/.config/tmux .
 rm tmux.sh
 cp ~/.tmux.sh tmux.sh
+
+# hyprland
+rm -rf hypr
+cp -r ~/.config/hypr .
+
+# waybar
+rm -rf waybar
+cp -r ~/.config/waybar .
