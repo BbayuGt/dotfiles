@@ -222,7 +222,7 @@ hl.device({
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- Screenshot
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("hyprquickframe"))
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("~/.local/bin/rishot"))
 -- Toggle waybar
 hl.bind(mainMod .. " + TAB", hl.dsp.exec_cmd([[
 out=$(ps -e | grep waybar | wc -l)

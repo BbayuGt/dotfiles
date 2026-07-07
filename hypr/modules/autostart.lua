@@ -15,6 +15,7 @@
 -- end)
 
 hl.on("hyprland.start", function ()
+    hl.exec_cmd("export PATH=\"$HOME/.local/bin:$PATH\"")
     hl.exec_cmd("waybar & hyprpaper & hypridle")
     hl.exec_cmd("systemctl start vicinae --user")
     hl.exec_cmd("/usr/lib/pam_kwallet_init")
