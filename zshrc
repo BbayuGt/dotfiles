@@ -40,6 +40,7 @@ bindkey '^H' backward-kill-word
 export BROWSER=brave
 
 # Path to your Oh My Zsh installation.
+ZSH_DISABLE_COMPFIX="true"
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
@@ -63,7 +64,7 @@ ZSH_THEME="cloud"
 
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
-zstyle ':omz:update' mode auto      # update automatically without asking
+zstyle ':omz:update' mode background      # update automatically without asking
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
@@ -144,6 +145,18 @@ export EDITOR='nvim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 
+# nodejs
+export PATH="/run/user/1000/fnm_multishells/59866_1784996669817/bin":$PATH
+export FNM_MULTISHELL_PATH="/run/user/1000/fnm_multishells/59866_1784996669817"
+export FNM_VERSION_FILE_STRATEGY="local"
+export FNM_DIR="/home/bbayugt/.local/share/fnm"
+export FNM_LOGLEVEL="info"
+export FNM_NODE_DIST_MIRROR="https://nodejs.org/dist"
+export FNM_COREPACK_ENABLED="false"
+export FNM_RESOLVE_ENGINES="true"
+export FNM_ARCH="x64"
+rehash
+
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias vencord='sh -c "$(curl -sS https://raw.githubusercontent.com/Vendicated/VencordInstaller/main/install.sh)"'
@@ -153,11 +166,65 @@ alias autoperf='echo auto | sudo tee /sys/class/drm/card1/device/power_dpm_force
 export BUN_INSTALL="$HOME/.bun"
 export PATH=$BUN_INSTALL/bin:$PATH
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
 # bun completions
 [ -s "/home/bbayugt/.bun/_bun" ] && source "/home/bbayugt/.bun/_bun"
 export LIBVIRT_DEFAULT_URI="qemu:///system"
+
+function print_welcome_sign() {
+    # Check cache first
+    cachefile=".cache/qotd.json"
+    cachedata=$(cat $cachefile | jq ".[]")
+
+    cachedate=$(echo $cachedata | jq ".date")
+
+    currentdate=$(date +%F)
+
+    if [ "$cachedate" != "\"$currentdate\"" ]; then
+	    curl https://zenquotes.io/api/today -o ".cache/qotd.json" --silent
+	    cachedata=$(cat $cachefile | jq ".[]")
+    fi # Cache miss
+
+
+    quote=$(echo $cachedata | jq ".q")
+    author=$(echo $cachedata | jq ".a")
+
+    bold=$(tput bold)
+    normal=$(tput sgr0)
+
+    cols=$COLUMNS
+
+    shorttext=$(cat << EOF
+ __    __     _                              
+/ / /\\ \\ \\___| | ___ ___  _ __ ___   ___     
+\\ \\/  \\/ / _ \\ |/ __/ _ \\| '_ \` _ \\ / _ \\    
+ \\  /\\  /  __/ | (_| (_) | | | | | |  __/  _ 
+  \\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___| (_)
+					     
+$bold> $quote $normal
+- $author
+EOF
+)
+
+    longtext=$(cat << EOF
+ __    __     _                              
+/ / /\\ \\ \\___| | ___ ___  _ __ ___   ___     
+\\ \\/  \\/ / _ \\ |/ __/ _ \\| '_ \` _ \\ / _ \\    	$bold> $quote $normal
+ \\  /\\  /  __/ | (_| (_) | | | | | |  __/  _ 	- $author
+  \\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___| (_)
+					     
+EOF
+)
+    # Get the longest line of the text (width)
+    textwidth=$(echo "$longtext" | wc -L)
+
+    # Display the long text if it fits
+    if [ $textwidth -gt $cols ]; then
+	    echo "$shorttext" | lolcat -p 10
+    else
+	    echo "$longtext" | lolcat -p 10
+    fi
+    add-zsh-hook -d precmd print_welcome_sign
+}
+
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd print_welcome_sign
