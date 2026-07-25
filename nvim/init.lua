@@ -43,5 +43,3 @@ require("config.keymaps")
 vim.cmd('set clipboard+=unnamedplus')
 vim.cmd('colorscheme catppuccin-mocha')
 vim.cmd('inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#confirm() : \"<S-Tab>\"')
-
-vim.cmd('nnoremap <C-b> :Telescope find_files<CR>')
