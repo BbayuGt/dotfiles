@@ -1,4 +1,4 @@
 
 return {
-	{ "github/copilot.vim", version = false }
+	-- { "github/copilot.vim", version = false }
 }
