@@ -51,6 +51,7 @@
 # --- Shell Configuration ---
 # Corresponds to [shell] program
 command = /home/bbayugt/.tmux.sh
+custom-shader = ~/.config/ghostty/cursor_warp.glsl
 
 # --- Font Configuration ---
 # Corresponds to [fonts]
