@@ -73,30 +73,7 @@ quit-after-last-window-closed = true
 quit-after-last-window-closed-delay = 5m
 
 # --- Colors ---
-# The colors defined in your Rio config are the "Tokyo Night" theme.
-# Ghostty has this built-in, which is the cleanest way to set it.
-# theme = tokyonight
+theme = Hopscotch.256
 
-# --- Manual Color Overrides (Optional) ---
-# If you prefer to manually define the exact hex codes from your 
-# Rio config instead of using the built-in theme, uncomment the lines below:
-
-background = #1a1b26
-foreground = #a9b1d6
-cursor-color = #a9b1d6
-selection-background = #364a82
-selection-foreground = #c0caf5
-palette = 0=#32344a
-palette = 1=#f7768e
-palette = 2=#9ece6a
-palette = 3=#e0af68
-palette = 4=#7aa2f7
-palette = 5=#ad8ee6
-palette = 6=#449dab
-palette = 7=#787c99
-palette = 8=#444b6a
-palette = 9=#f7768e
-palette = 10=#9ece6a
-palette = 11=#e0af68
-palette = 12=#7aa2f7
-palette = 13=#ad8ee6
+clipboard-read = allow
+clipboard-write = allow

@@ -13,6 +13,7 @@ require("modules.monitors")
 require("modules.autostart")
 require("modules.env")
 require("modules.swaync")
+require("modules.panic")
 
 ---------------------
 ---- MY PROGRAMS ----
@@ -49,8 +50,9 @@ local menu        = "vicinae toggle"
 -----------------------
 
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
-hl.layer_rule({ match = { namespace = "waybar" }, blur = true })
-hl.layer_rule({ match = { namespace = "vicinae" }, blur = true })
+hl.layer_rule({ match = { namespace = "waybar" }, blur = true, ignore_alpha = 0.1})
+hl.layer_rule({ match = { namespace = "vicinae" }, dim_around = true, ignore_alpha = 0.1, blur = true })
+hl.layer_rule({ match = { namespace = "swaync-notification-window" }, blur = true, ignore_alpha = 0.1 })
 
 hl.config({
     general = {
@@ -74,25 +76,38 @@ hl.config({
     },
 
     decoration = {
-        rounding       = 10,
+        rounding       = 20,
         rounding_power = 2,
 
         -- Change transparency of focused and unfocused windows
         active_opacity   = 1.0,
-        inactive_opacity = 0.9,
+        inactive_opacity = 0.8,
+
+        wobble = {
+            enabled = true,
+            stiffness = 200,
+            intensity = 0.1
+        },
+
+        motion_blur = {
+            enabled = true,
+            samples = 5
+        },
 
         shadow = {
             enabled      = true,
-            range        = 4,
+            range        = 20,
             render_power = 3,
             color        = 0xee1a1a1a,
         },
 
         blur = {
             enabled   = true,
-            size      = 3,
+            size      = 5,
             passes    = 3,
-            vibrancy  = 0.1696,
+            vibrancy  = .5,
+            special = true,
+            -- variant = "frost"
         },
     },
 
@@ -177,6 +192,9 @@ hl.config({
         force_default_wallpaper = 0,    -- Set to 0 or 1 to disable the anime mascot wallpapers
         disable_hyprland_logo   = true, -- If true disables the random hyprland logo / anime girl background. :(
     },
+    render = {
+        cm_auto_hdr = 0
+    }
 })
 
 
@@ -253,7 +271,7 @@ hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + space", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + SHIFT + P", hl.dsp.window.pseudo())
-hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("ghostty -e hyprmode"))
+-- hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("ghostty -e hyprmode"))
 
 -- Move window
 hl.bind(mainMod .. " + SHIFT + H",  hl.dsp.window.move({ direction = "left" }))
@@ -280,8 +298,8 @@ end
 hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
 
 -- Scroll through existing workspaces with mainMod + scroll
-hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(mainMod .. " + CTRL + L", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(mainMod .. " + CTRL + H",   hl.dsp.focus({ workspace = "e-1" }))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
@@ -324,6 +342,9 @@ local suppressMaximizeRule = hl.window_rule({
 hl.config({
     xwayland = {
         force_zero_scaling = true
+    },
+    render = {
+        direct_scanout = 0
     }
 })
 

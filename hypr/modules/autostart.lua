@@ -26,7 +26,19 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("systemctl start vicinae --user")
     hl.exec_cmd("/usr/lib/pam_kwallet_init")
     hl.exec_cmd("/usr/bin/kwalletd6")
+    hl.exec_cmd("rbw-agent")
     hl.exec_cmd("systemctl start --user hyprpolkitagent.service")
-    hl.exec_cmd("/mnt/data/drpcsplit/discord_rpc_proxy")
+    hl.exec_cmd("/mnt/data/drpcsplit/discord_rpc_proxy & /mnt/data/sys-state/target/release/sys-state")
+    -- hl.exec_cmd("pactl load-module module-echo-cancel")
 end)
 
+hl.on("monitor.added", function()
+    -- Discord
+    local monitor = hl.get_monitor("HDMI-A-1")
+    if monitor ~= nil then
+        if monitor.description == "Xiaomi Corporation Mi Monitor" then
+            hl.exec_cmd("/usr/bin/vesktop --user-data-dir=\"/home/bbayugt/.config/vesktop2\"")
+            hl.exec_cmd("/usr/bin/vesktop")
+        end
+    end
+end)

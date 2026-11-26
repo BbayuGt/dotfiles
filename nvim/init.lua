@@ -41,5 +41,4 @@ require("config.autocmds")
 require("config.keymaps")
 
 vim.cmd('set clipboard+=unnamedplus')
-vim.cmd('colorscheme catppuccin-mocha')
-vim.cmd('inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#confirm() : \"<S-Tab>\"')
+vim.cmd('inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#confirm() : \"<Tab>\"')

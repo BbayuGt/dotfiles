@@ -1,8 +1,8 @@
-@define-color white #e2ddec;
-@define-color white-muted #9b93a8;
+@define-color white #f9efee;
+@define-color white-muted #dfada8;
 
-@define-color purple #8a78a3;
-@define-color purple-dim #65587a;
+@define-color purple #d99c96;
+@define-color purple-dim #cc7b73;
 
-@define-color error #a86c75;
-@define-color base-clr #1e1a26;
+@define-color error #732937;
+@define-color base-clr #ac5148;

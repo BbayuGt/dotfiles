@@ -9,13 +9,17 @@
     margin-right: 12px;
 }
 
+window {
+    border-radius: 0px 0px 10px 10px;
+}
+
 window#waybar {
     border-radius: 0 0 10px 10px;
-    background-color: alpha(@base-clr, 0.7);
+    background-color: alpha(@base-clr, 0.2);
 }
 
 #window {
-    background-color: @purple-dim;
+    background-color: alpha(@purple-dim, 0.7);
     padding-left: 12px;
     border-radius: 0px 0px 0px 10px;
 }
@@ -24,11 +28,13 @@ window#waybar {
 window#waybar.empty #window {
     all: unset;
     font-size: 0;
+    transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Apply border radius if Window is empty */
 window#waybar.empty #workspaces.number button.active {
-    border-radius: 0px 5px 5px 10px;
+    border-radius: 0px 0px 10px 10px;
+    transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #workspaces.number {
@@ -37,10 +43,20 @@ window#waybar.empty #workspaces.number button.active {
 
 #workspaces.number button.active {
     all: unset;
-    background-color: @purple-dim;
+    background-color: alpha(@purple-dim, 0.7);
     color: @white;
     padding: 2px 10px;
-    border-radius: 0px 5px 5px 0px;
+    border-radius: 0px 0px 10px 0px;
+    transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#workspaces.number button {
+    all: unset;
+    background-color: alpha(@purple-dim, 0.7);
+    color: @white-muted;
+    padding: 2px 10px;
+    border-radius: 0px 0px 10px 0px;
+    transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #workspaces {

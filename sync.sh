@@ -29,3 +29,6 @@ cp -r ~/.config/hypr .
 # waybar
 rm -rf waybar
 cp -r ~/.config/waybar .
+
+rm -rf ffox && mkdir ffox
+cp /home/bbayugt/.config/librewolf/librewolf/p36zld1b.default-release/chrome/* ffox

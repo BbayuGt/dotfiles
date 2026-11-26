@@ -5,8 +5,6 @@ return {
 				local telescope = require('telescope.builtin')
 				local initial_path = vim.fn.argv(0)
 				local current_working_dir = vim.loop.cwd()
-				print("Telescope debug: argv(0) = " .. initial_path)
-				print("Telescope debug: vim.loop.cwd() = " .. current_working_dir)
 
 				if initial_path ~= "" and vim.fn.isdirectory(initial_path) == 1 then
 						vim.cmd('cd ' .. initial_path)

@@ -1,0 +1,34 @@
+* {
+  background-color: transparent !important;
+  --tabpanel-background-color: none !important;
+}
+
+#tabbrowser-tabbox,
+#statuspanel-label,
+#navigator-toolbox,
+#sidebar-box{
+  background-color: rgba(0,0,0,.5) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+#sidebar-splitter {
+  background-color: rgba(0,0,0,.5) !important;
+  border: 0px solid rgba(0,0,0,.5) !important;
+}
+
+.urlbarView-background {
+  background-color: rgba(0,0,0,.5) !important;
+  background: linear-gradient(
+    180deg,
+    rgba(30, 30, 36, 0.82) 0%,
+    rgba(20, 20, 25, 0.88) 100%
+  ) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+#statuspanel-label {
+  color: white
+}
+
+panelview, .menupopup-arrowscrollbox {
+   background-color: rgba(22,22,22,.8) !important;
+}

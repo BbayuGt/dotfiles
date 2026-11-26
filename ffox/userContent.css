@@ -1,0 +1,5 @@
+@-moz-document url("about:settings"), url("about:home"), url("about:newtab") {
+    html, body {
+        background-color: transparent !important;
+    }
+}

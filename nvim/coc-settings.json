@@ -1,1 +1,33 @@
-
+{
+  "languageserver": {
+    "gopls": {
+      "command": "gopls",
+      "args": ["serve"],
+      "rootPatterns": ["go.mod"],
+      "filetypes": ["go", "gomod", "gowork"],
+      "settings": {
+        "gopls": {
+          "semanticTokens": true,
+          "semanticTokenTypes": {
+            // Vim's syntax highlighting is more colorful
+            "string": false
+          },
+          "hints": {
+            "assignVariableTypes": true,
+            "compositeLiteralFields": true,
+            "compositeLiteralTypes": true,
+            "constantValues": true,
+            "functionTypeParameters": true,
+            "ignoredError": true,
+            "parameterNames": true,
+            "rangeVariableTypes": true
+          }
+        }
+      }
+    }
+  },
+  "json.schemaDownload.trustedDomains": {
+    "https://www.schemastore.org": true,
+    "https://json.schemastore.org": true
+  }
+}
